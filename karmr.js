@@ -4,6 +4,10 @@
     Karmr.protocol = 'http';
     Karmr.domain = 'karmr.herokuapp.com';
     Karmr.accounts = new Accounts( Karmr.socket );
+    io.configure(function () { 
+      io.set("transports", ["xhr-polling"]); 
+      io.set("polling duration", 10); 
+    });
     Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
 
 	/* Socket */
@@ -19,7 +23,7 @@
     Karmr.socket.on('disconnect',function() {
         console.log("DISCONNECTED");
     });
-    
+
 	Karmr.accounts.subscribe( 'sessioning', function( data ) {
 		console.log("SESSIONING",data)
 	} );
