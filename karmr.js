@@ -1,39 +1,43 @@
 var Karmr = Karmr || {};
 
-$( document ).ready( function( e ) {
+( function( Karmr ) { 
 
-    Karmr.websocket = Karmr.websocket || {};
-    Karmr.protocol = 'http';
-    Karmr.domain = 'localhost:5000';
-    Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
-    Karmr.accounts = new Accounts( Karmr.socket );
+	$( document ).ready( function( e ) {
 
-    /* Karmr */
+	    Karmr.websocket = Karmr.websocket || {};
+	    Karmr.protocol = 'http';
+	    Karmr.domain = 'localhost:5000';
+	    Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
+	    Karmr.accounts = new Accounts( Karmr.socket );
 
-	Karmr.accounts.subscribe( 'sessioned', function( data ) {
-	    Karmr.profiles.update();
+	    /* Karmr */
+
+		Karmr.accounts.subscribe( 'sessioned', function( data ) {
+		    Karmr.profiles.update();
+		} );
+
+		Karmr.accounts.subscribe( 'unsessioned', function( data ) {
+		    Karmr.profiles.update();
+		} );
+
+		Karmr.accounts.subscribe( 'profile', function( data ) {
+			console.log("PROFILE",data);
+		} );
+
+		/* Socket */
+
+		Karmr.socket.on('api',function(data) {
+			console.log("api",JSON.stringify(data));
+		});
+
+		Karmr.socket.on('connect',function() {
+			console.log("CONNECTED");
+		});
+
+		Karmr.socket.on('disconnect',function() {
+			console.log("DISCONNECTED");
+		});
+
 	} );
 
-	Karmr.accounts.subscribe( 'unsessioned', function( data ) {
-	    Karmr.profiles.update();
-	} );
-
-	Karmr.accounts.subscribe( 'profile', function( data ) {
-		console.log("PROFILE",data);
-	} );
-
-	/* Socket */
-
-	Karmr.socket.on('api',function(data) {
-		console.log("api",JSON.stringify(data));
-	});
-
-	Karmr.socket.on('connect',function() {
-		console.log("CONNECTED");
-	});
-
-	Karmr.socket.on('disconnect',function() {
-		console.log("DISCONNECTED");
-	});
-
-} );
+}( Karmr ) );
