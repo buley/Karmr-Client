@@ -1,9 +1,9 @@
 var Karmr = Karmr || {};
 
 $( document ).ready( function( e ) {
-	
+
     Karmr.websocket = Karmr.websocket || {};
-    Karmr.domain = 'api.Karmr.com';
+    Karmr.domain = 'localhost:5000';
     Karmr.socket = io.connect( 'https://' + Karmr.domain );
     Karmr.accounts = new Accounts( Karmr.socket );
 
