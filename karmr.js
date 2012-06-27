@@ -2,9 +2,9 @@
 
     Karmr.websocket = Karmr.websocket || {};
     Karmr.protocol = window.location.protocol;
-    Karmr.domain = window.location.hostname;
+    Karmr.domain = window.location.host;
     Karmr.accounts = new Accounts( Karmr.socket );
-    Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
+    Karmr.socket = io.connect( Karmr.protocol + '//' + Karmr.domain );
 
 	/* Socket */
 
