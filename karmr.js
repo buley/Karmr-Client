@@ -1,4 +1,4 @@
-var Karmr = Karmr || {};
+Karmr = Karmr || {};
 
 ( function( Karmr ) { 
 
@@ -6,12 +6,11 @@ var Karmr = Karmr || {};
 
 	    Karmr.websocket = Karmr.websocket || {};
 	    Karmr.protocol = 'http';
-	    Karmr.domain = 'localhost:5000';
+	    Karmr.domain = 'karmr.herokuapp.com';
+	    Karmr.accounts = null;
 	    Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
-	    Karmr.accounts = new Accounts( Karmr.socket );
 
 	    /* Karmr */
-
 
 		Karmr.accounts.subscribe( 'sessioning', function( data ) {
 			console.log("SESSIONING",data)
@@ -19,7 +18,7 @@ var Karmr = Karmr || {};
 
 
 		Karmr.accounts.subscribe( 'sessioned', function( data ) {
-			console.log("sessioned",data)
+			console.log("SESSIONING",data)
 		    Karmr.profiles.update();
 		} );
 
@@ -40,6 +39,7 @@ var Karmr = Karmr || {};
 
 		Karmr.socket.on('connect',function(data) {
 			console.log("CONNECTED",data);
+		    Karmr.accounts = new Accounts( Karmr.socket );
 		});
 
 		Karmr.socket.on('disconnect',function() {
