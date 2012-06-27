@@ -12,11 +12,19 @@ var Karmr = Karmr || {};
 
 	    /* Karmr */
 
+
+		Karmr.accounts.subscribe( 'sessioning', function( data ) {
+			console.log("SESSIONING",data)
+		} );
+
+
 		Karmr.accounts.subscribe( 'sessioned', function( data ) {
+			console.log("sessioned",data)
 		    Karmr.profiles.update();
 		} );
 
 		Karmr.accounts.subscribe( 'unsessioned', function( data ) {
+			console.log("unsessioned",data)
 		    Karmr.profiles.update();
 		} );
 
@@ -37,6 +45,8 @@ var Karmr = Karmr || {};
 		Karmr.socket.on('disconnect',function() {
 			console.log("DISCONNECTED");
 		});
+
+
 
 	} );
 
