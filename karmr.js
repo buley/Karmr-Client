@@ -1,5 +1,4 @@
-function( context ) {
-
+	Karmr = Karmr || {};
 	Karmr.websocket = Karmr.websocket || {};
 	Karmr.domain = 'api.Karmr.com';
 	Karmr.socket = io.connect( 'https://' + Karmr.domain );
@@ -32,4 +31,3 @@ function( context ) {
 	});
 
 
-}( this ) );
