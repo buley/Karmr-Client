@@ -30,8 +30,8 @@ var Karmr = Karmr || {};
 			console.log("api",JSON.stringify(data));
 		});
 
-		Karmr.socket.on('connect',function() {
-			console.log("CONNECTED");
+		Karmr.socket.on('connect',function(data) {
+			console.log("CONNECTED",data);
 		});
 
 		Karmr.socket.on('disconnect',function() {
