@@ -1,5 +1,3 @@
-Karmr = Karmr || {};
-
 ( function( Karmr ) { 
 
 	$( document ).ready( function( e ) {
