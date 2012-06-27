@@ -4,10 +4,6 @@
     Karmr.protocol = 'http';
     Karmr.domain = 'karmr.herokuapp.com';
     Karmr.accounts = new Accounts( Karmr.socket );
-    io.configure(function () { 
-      io.set("transports", ["xhr-polling"]); 
-      io.set("polling duration", 10); 
-    });
     Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
 
 	/* Socket */
