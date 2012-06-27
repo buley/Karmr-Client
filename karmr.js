@@ -3,8 +3,9 @@ var Karmr = Karmr || {};
 $( document ).ready( function( e ) {
 
     Karmr.websocket = Karmr.websocket || {};
+    Karmr.protocol = 'https';
     Karmr.domain = 'localhost:5000';
-    Karmr.socket = io.connect( 'https://' + Karmr.domain );
+    Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
     Karmr.accounts = new Accounts( Karmr.socket );
 
     /* Karmr */
@@ -35,9 +36,4 @@ $( document ).ready( function( e ) {
 		console.log("DISCONNECTED");
 	});
 
-
-
 } );
-
-
-
