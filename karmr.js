@@ -1,8 +1,8 @@
 ( function( Karmr ) { 
 
     Karmr.websocket = Karmr.websocket || {};
-    Karmr.protocol = 'http';
-    Karmr.domain = 'karmr.herokuapp.com';
+    Karmr.protocol = window.location.protocol;
+    Karmr.domain = window.location.hostname;
     Karmr.accounts = new Accounts( Karmr.socket );
     Karmr.socket = io.connect( Karmr.protocol + '://' + Karmr.domain );
 
