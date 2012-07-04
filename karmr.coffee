@@ -1,33 +1,36 @@
-( ( Karmr ) ->
+Karmr = ( _namespace, callback ) ->
 
-  Karmr = Karmr || {}
-  Karmr.websocket = Karmr.websocket or {}
-  Karmr.protocol = window.location.protocol
-  Karmr.domain = window.location.host
-  Karmr.socket = io.connect( Karmr.protocol + "//" + Karmr.domain )
+  _namespace = _namespace || {}
+  _namespace.websocket = _namespace.websocket or {}
+  _namespace.protocol = window.location.protocol
+  _namespace.domain = window.location.host
+  _namespace.socket = io.connect( _namespace.protocol + "//" + _namespace.domain )
 
-  Karmr.socket.on "api", (data) ->
+  _namespace.socket.on "api", (data) ->
     console.log "api", JSON.stringify(data)
 
-  Karmr.socket.on "connect", (data) ->
+  _namespace.socket.on "connect", (data) ->
 
     console.log "CONNECTED", data
 
-    Karmr.accounts = new Accounts(Karmr.socket)
+    _namespace.accounts = new Accounts(_namespace.socket)
+    callback.apply( @, _namespace.accounts )
 
-    Karmr.accounts.subscribe "sessioning", ( data ) ->
+    _namespace.accounts.subscribe "sessioning", ( data ) ->
       console.log "SESSIONING", data
 
-    Karmr.accounts.subscribe "sessioned", ( data ) ->
+    _namespace.accounts.subscribe "sessioned", ( data ) ->
       console.log "SESSIONED", data
 
-    Karmr.accounts.subscribe "unsessioned", ( data ) ->
+    _namespace.accounts.subscribe "unsessioned", ( data ) ->
       console.log "UNSESSIONED", data
 
-    Karmr.accounts.subscribe "profile", ( data ) ->
+    _namespace.accounts.subscribe "profile", ( data ) ->
       console.log "PROFILE", data
 
-  Karmr.socket.on "disconnect", ->
+  _namespace.socket.on "disconnect", ->
     console.log "DISCONNECTED"
 
-) Karmr or {}
+  _namespace
+  
+)
