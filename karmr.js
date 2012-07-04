@@ -31,7 +31,17 @@
     _namespace.socket.on("disconnect", function() {
       return console.log("DISCONNECTED");
     });
-    return _namespace;
+    return window.Karmr = _namespace;
   };
+
+  Karmr({}, function(accounts) {
+    /*
+      Run
+    */
+
+    var header_view, main_view;
+    header_view = new HeaderView(accounts);
+    return main_view = new MainView;
+  });
 
 }).call(this);

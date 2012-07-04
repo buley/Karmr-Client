@@ -32,3 +32,16 @@ Karmr = ( _namespace, callback ) ->
     console.log "DISCONNECTED"
 
   window.Karmr = _namespace
+
+
+Karmr( {}, ( accounts ) ->
+
+  ###
+  Run
+  ###
+  
+  # views are self-rendering on init
+  header_view = new HeaderView accounts
+  main_view = new MainView
+
+)
