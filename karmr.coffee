@@ -32,5 +32,3 @@ Karmr = ( _namespace, callback ) ->
     console.log "DISCONNECTED"
 
   _namespace
-  
-)
