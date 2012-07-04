@@ -31,4 +31,4 @@ Karmr = ( _namespace, callback ) ->
   _namespace.socket.on "disconnect", ->
     console.log "DISCONNECTED"
 
-  _namespace
+  window.Karmr = _namespace
